@@ -2,6 +2,8 @@
 
 using namespace std;
 
+
+
 int main(){
     int n;
     cin >> n;
@@ -32,7 +34,7 @@ int main(){
     case 1:
         int n5 = n/5;
         n -= n5*5;
-        cout << "5 coins: "<<n5<<", ";
+        cout << "5 coins/notes: "<<n5<<", ";
     }
     switch (n>=2){
     case 1:
