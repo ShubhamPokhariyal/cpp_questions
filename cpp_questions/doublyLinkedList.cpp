@@ -42,9 +42,33 @@ void ReversePrint(Node *head){
     }cout << endl;
 }
 
+void deleteAtPostion(Node* &head, int pos){
+    if(pos==1){
+        Node* temp = head;
+        head = temp->next;
+        head->prev = NULL;
+        delete temp;
+        return;
+    }   
+    Node* temp = head;
+    for(int i=0; i<pos-1;i++){
+        temp = temp->next;
+    }if(temp->next == NULL){
+        Node* previous = temp->prev;
+        previous->next = NULL;
+        delete(temp);
+        return;
+    }
+    Node* previous = temp->prev;
+    Node* next = temp->next;
+    previous->next = next;
+    next->prev = previous;
+    delete(temp);
+}
+
 int main(){
     Node* head=NULL;
-    int t=1,data;
+    int t=1,data,pos;
     while(t){
         cout << "1. Insert\n2. Display\n3. Reverse Print"<<endl;
         cin >> t;
@@ -55,6 +79,9 @@ int main(){
             display(head);
         }else if(t==3){
             ReversePrint(head);
+        }else if(t==4){
+            cin >> pos;
+            deleteAtPostion(head,pos);
         }
     }
 }
