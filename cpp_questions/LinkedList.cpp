@@ -1,5 +1,5 @@
 #include<iostream>
-
+#include<stack>
 using namespace std;
 
 struct Node{
@@ -69,6 +69,28 @@ void delete_at_pos(Node* &head, int pos){
     delete temp1;
 }
 
+void reverse_using_stack(Node* &head){
+    if(head==NULL){
+        cout << "Linked List is empty!"<<endl;
+        return;
+    }
+    Node* temp = head;
+    stack<Node*> stack;
+    while(temp!=NULL){
+        stack.push(temp);
+        temp = temp->next;
+    }
+    temp = stack.top();
+    head = temp;
+    stack.pop();
+    while(!stack.empty()){
+        temp->next = stack.top();
+        stack.pop();
+        temp = temp->next;
+    }temp->next = NULL;
+
+}
+
 void reverse(Node* &head){
     Node *current, *next, *prev;
     current = head;
@@ -122,7 +144,7 @@ int main(){
         }else if(t==5){
             reverse(head);
         }else if(t==6){
-            reverse_recursion(head,head);
+            reverse_using_stack(head);
         }
     }
 }
