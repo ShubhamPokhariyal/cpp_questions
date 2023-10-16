@@ -2,16 +2,16 @@
 
 using namespace std;
 
-void recFibo(int n,int a,int b){
-    if(n>0){
-        recFibo(n-1,b,a+b);
-        cout << a<<endl;
+int recFibo(int n){
+    if(n<=2){
+        return 1;
     }
+    return recFibo(n-1) + recFibo(n-2);
 }
 
 int main(){
+    cout << "Enter the term"<<endl;
     int n;
     cin >> n;
-    recFibo(n,0,1);
-    return 0;
+    cout << recFibo(n);
 }
